@@ -245,5 +245,3 @@ class _Test:
         cls._files_test()
 
 _Test.run_all_tests()
-
-
