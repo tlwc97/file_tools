@@ -4,15 +4,13 @@ import pandas
 from pprint import pprint as pp
 
 here = os.path.dirname(os.path.realpath(__file__))
-parent = "\\".join(here.split("\\")[:-1])
+parent = "\\".join(here.split("\\")[:-2])
+sys.path.append(parent)
+
 
 def show_data_converter():
 
-    sys.path.append(parent)
-
     from file_tools import data_converter
-
-    # import data_converter
 
     print(data_converter)
     print(type(data_converter))
@@ -52,11 +50,9 @@ def show_data_converter():
 
     del data_converter
 
-# show_data_converter()
 
-from data_converter import *
-# import data_converter
-# print(dir(data_converter))
+from file_tools.data_converter import *
+
 
 class _Test:
 
@@ -228,41 +224,6 @@ class _Test:
             print("_html_test() failed")
 
 
-
-# _Test._df_test()
-# _Test._csv_test()
 _Test.run_all_tests()
 
-
-
-
-
-
-
-
-
-# pp(convert)
-# print(__dict__)
-#
-# cols = ["test_col_1", "test_col_2", "test_col_3"]
-#
-# row1 = ["dog", "brown", "Kara"]
-#
-# row2 = ["cat", "grey", "Finn"]
-#
-# dataframe = pandas.DataFrame(data=[row1, row2], columns=cols)
-#
-#
-# html_path = "{}\\test_path.html".format(here)
-# txt_path = "{}\\test_path.txt".format(here)
-#
-#
-# html_val = df(html_path, dataframe)
-#
-# print(html_val)
-#
-#
-# string_val = string(html_val)
-#
-# string(txt_path, string_val)
 

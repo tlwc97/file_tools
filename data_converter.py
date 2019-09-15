@@ -5,10 +5,6 @@ __all__ = [
     "get_ext",
     "df",
     "string",
-    # "csv",
-    # "xlsx",
-    # "json",
-    # "html",
 ]
 
 class _Df:
@@ -216,11 +212,11 @@ class _File:
 
 
 get_file_name = _File._get_file_name
+
 get_ext = _File._get_ext
+
 df = _Df.df
+
 string = _String.string
-csv = _File.csv
-xlsx = _File.xlsx
-json = _File.json
-html = _File.html
+
 
