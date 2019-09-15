@@ -5,6 +5,7 @@ __all__ = [
     "get_ext",
     "df",
     "string",
+    "file",
 ]
 
 class _Df:
@@ -219,4 +220,5 @@ df = _Df.df
 
 string = _String.string
 
+file = _File.files
 

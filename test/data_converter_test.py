@@ -173,6 +173,25 @@ class _Test:
 
 
     @classmethod
+    def _files_test(cls):
+
+        for i in cls._data_path_list():
+
+            other_path = [j for j in cls._data_path_list() if j != i]
+
+            for k in other_path:
+
+                try:
+
+                    dest_path = file(i, k)
+
+                    print("file() passed with src={} and dest={}".format(i, k))
+
+                except:
+
+                    raise RuntimeError("file() failed with src={} and dest={}".format(i, k))
+
+    @classmethod
     def run_all_tests(cls):
 
         try:
@@ -223,6 +242,7 @@ class _Test:
 
             print("_html_test() failed")
 
+        cls._files_test()
 
 _Test.run_all_tests()
 
