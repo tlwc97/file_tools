@@ -1,8 +1,6 @@
 import pandas
 
 __all__ = [
-    "get_file_name",
-    "get_ext",
     "df",
     "string",
     "file",
@@ -197,24 +195,20 @@ class _File:
 
 
     @classmethod
-    def files(cls, read, write):
+    def files(cls, src, dest):
 
-        if (_File._get_ext(read) == "html" and _File._get_ext(write) == "txt")\
+        if (_File._get_ext(src) == "html" and _File._get_ext(dest) == "txt")\
             \
-            or (_File._get_ext(read) == "txt" and _File._get_ext(write) == "html"):
+            or (_File._get_ext(src) == "txt" and _File._get_ext(dest) == "html"):
 
-            _String.string(write, _String.string(read))
+            _String.string(dest, _String.string(src))
 
         else:
 
-            _Df.df(write, _Df.df(read))
+            _Df.df(dest, _Df.df(src))
 
-        return write
+        return dest
 
-
-get_file_name = _File._get_file_name
-
-get_ext = _File._get_ext
 
 df = _Df.df
 
