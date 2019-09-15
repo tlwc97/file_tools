@@ -2,8 +2,9 @@
 
 Module to make it easier to handle files and data
 
-data_converter:
-- converts to pandas.DataFrame from csv, xlsx, json, and html
+## data_converter:
+
+* converts to pandas.DataFrame from csv, xlsx, json, and html
 
   -df(path) -> pandas.DataFrame
 
