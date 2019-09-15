@@ -6,7 +6,7 @@ Module to make it easier to handle files and data
 
 * converts to pandas.DataFrame from csv, xlsx, json, and html
 
- * df(path) -> pandas.DataFrame
+  * df(path) -> pandas.DataFrame
 
 * converts from pandas.DataFrame to csv, xlsx, json, and html
 
