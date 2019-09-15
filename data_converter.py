@@ -1,18 +1,15 @@
 import pandas
-from collections import namedtuple
 
-
-_Convert = namedtuple("Convert", [
+__all__ = [
     "get_file_name",
     "get_ext",
     "df",
     "string",
-    "csv",
-    "xlsx",
-    "json",
-    "html",
-])
-
+    # "csv",
+    # "xlsx",
+    # "json",
+    # "html",
+]
 
 class _Df:
 
@@ -53,7 +50,7 @@ class _Df:
 
             ext = _File._get_ext(path)
 
-            func = getattr(_File, ext)
+            func = getattr(cls, ext)
 
             return func(path)
 
@@ -64,8 +61,6 @@ class _Df:
                 ext = _File._get_ext(path)
 
                 func = getattr(_File, ext)
-
-                print(func)
 
                 return func(path, obj)
 
@@ -112,9 +107,10 @@ class _String:
         return path
 
 
-    def string(cls, path, string=None):
+    @classmethod
+    def string(cls, path, str_obj=None):
 
-        if string is None:
+        if str_obj is None:
 
             ext = _File._get_ext(path)
 
@@ -122,11 +118,11 @@ class _String:
 
             if os.path.isfile(path):
 
-                extensions = _String.ext_list()
+                extensions = cls.ext_list()
 
                 if ext in extensions:
 
-                    return _String.read(path)
+                    return cls.read(path)
 
                 else:
 
@@ -136,11 +132,9 @@ class _String:
 
                 raise FileNotFoundError
 
-            del os
-
         else:
 
-            _String.write(path, string=string)
+            cls.write(path, string=str_obj)
 
 
 class _File:
@@ -220,20 +214,13 @@ class _File:
 
         return write
 
-convert = _Convert(
-    _File._get_file_name,
-    _File._get_ext,
-    _Df.df,
-    _String.string,
-    _File.csv,
-    _File.xlsx,
-    _File.json,
-    _File.html,
-)
 
-del pandas
-del namedtuple
-del _Convert
-del _Df
-del _String
-del _File
+get_file_name = _File._get_file_name
+get_ext = _File._get_ext
+df = _Df.df
+string = _String.string
+csv = _File.csv
+xlsx = _File.xlsx
+json = _File.json
+html = _File.html
+

@@ -6,8 +6,6 @@ from pprint import pprint as pp
 here = os.path.dirname(os.path.realpath(__file__))
 parent = "\\".join(here.split("\\")[:-1])
 
-
-
 def show_data_converter():
 
     sys.path.append(parent)
@@ -57,7 +55,8 @@ def show_data_converter():
 # show_data_converter()
 
 from data_converter import *
-
+# import data_converter
+# print(dir(data_converter))
 
 class _Test:
 
@@ -100,7 +99,7 @@ class _Test:
 
         for i in path_list:
 
-            df_list.append(convert.df(i))
+            df_list.append(df(i))
 
         for i in df_list:
 
@@ -118,7 +117,7 @@ class _Test:
 
         for i in path_list:
 
-            string_list.append(convert.string(i))
+            string_list.append(string(i))
 
         for i in string_list:
 
@@ -132,7 +131,7 @@ class _Test:
 
         path = "{}\\df_to_file.csv".format(here)
 
-        convert.csv(path, cls._get_test_df())
+        df(path, cls._get_test_df())
 
         print("_csv_test() passed")
 
@@ -142,7 +141,7 @@ class _Test:
 
         path = "{}\\df_to_file.xlsx".format(here)
 
-        convert.xlsx(path, cls._get_test_df())
+        df(path, cls._get_test_df())
 
         print("_xlsx_test() passed")
 
@@ -152,9 +151,13 @@ class _Test:
 
         path = "{}\\df_to_file.json".format(here)
 
-        convert.df.json(path, cls._get_test_df())
+        df(path, cls._get_test_df())
 
-        print("_json_test() passed")
+        print("_json_test() using df() passed")
+        #
+        # json(path, cls._get_test_df())
+        #
+        # print("_json_test() using json() passed")
 
 
     @classmethod
@@ -162,13 +165,13 @@ class _Test:
 
         path = "{}\\df_to_file.html".format(here)
 
-        convert.html(path, cls._get_test_df())
+        df(path, cls._get_test_df())
 
         print("_html_test() from df passed")
 
         path = "{}\\string_to_file.html".format(here)
 
-        convert.html(path, "<p>Here goes nothin kid</p>")
+        string(path, "<p>Here goes nothin kid</p>")
 
         print("_html_test() from string passed")
 
@@ -225,12 +228,10 @@ class _Test:
             print("_html_test() failed")
 
 
-t = _Test
 
-t._string_test()
-
-
-# _Test.run_all_tests()
+# _Test._df_test()
+# _Test._csv_test()
+_Test.run_all_tests()
 
 
 
@@ -241,7 +242,7 @@ t._string_test()
 
 
 # pp(convert)
-# print(convert.__dict__)
+# print(__dict__)
 #
 # cols = ["test_col_1", "test_col_2", "test_col_3"]
 #
@@ -256,12 +257,12 @@ t._string_test()
 # txt_path = "{}\\test_path.txt".format(here)
 #
 #
-# html_val = convert.df(html_path, dataframe)
+# html_val = df(html_path, dataframe)
 #
 # print(html_val)
 #
 #
-# string_val = convert.string(html_val)
+# string_val = string(html_val)
 #
-# convert.string(txt_path, string_val)
+# string(txt_path, string_val)
 
