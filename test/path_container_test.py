@@ -3,6 +3,7 @@ import sys
 import pandas
 from pprint import pprint as pp
 
+
 here = os.path.dirname(os.path.realpath(__file__))
 parent = "\\".join(here.split("\\")[:-2])
 sys.path.append(parent)
@@ -10,15 +11,16 @@ sys.path.append(parent)
 
 from file_tools.path_container import *
 
-
 path = "{}\\test_file.txt".format(here)
 
 x = Path(path)
 
-from pprint import pprint as pp
 
+def show_path_object(print_flag=True):
 
-def show_path_object():
+    if print_flag == False:
+
+        return
 
     print("Path elements:\n---------------")
     print("path: ")
@@ -42,36 +44,87 @@ def show_path_object():
     print("\n-------------------")
 
 
-def run_main_test():
+def run_main_test(print_flag=True):
 
-    show_path_object()
+    ext_change = "xlsx"
 
-    input("\n")
+    name_change = "new_test_file"
 
-    print("x.ext = 'xlsx'\n------------")
-    x.ext = "xlsx"
-    show_path_object()
+    dir_change = "C:\\Program Files'"
 
-    input("\n")
+    path_change = path
 
-    print("x.name = 'new_test_file'\n------------")
-    x.name = "new_test_file"
-    show_path_object()
+    file_change = "third_file.sql"
 
-    input("\n")
+    show_path_object(print_flag)
 
-    print("x.dir = 'C:\\Program Files'\n------------")
-    x.dir = "C:\\Program Files"
-    show_path_object()
+    print("\n")
 
-    input("\n")
+    print("x.ext = \"{}\"\n------------".format(ext_change))
+    x.ext = ext_change
+    show_path_object(print_flag)
 
-    print("x(path)\n------------")
-    x.Path = path
-    show_path_object()
+    assert ext_change == x.ext
+    print("extension change passed")
 
-    input("\n")
+    print("\n")
 
-    print("x.file('third_file.sql')\n------------")
-    x.File = "third_file.sql"
-    show_path_object()
+    print("x.name = \"{}\"\n------------".format(name_change))
+    x.name = name_change
+    show_path_object(print_flag)
+
+    assert name_change == x.name
+    print("name change passed")
+
+    print("\n")
+
+    print("x.dir = \"{}\"\n------------".format(dir_change))
+    x.dir = dir_change
+    show_path_object(print_flag)
+
+    assert dir_change == x.dir
+
+    print("dir change passed")
+
+    print("\n")
+
+    print("x.Path = \"{}\"\n------------".format(path_change))
+    x.Path = path_change
+    show_path_object(print_flag)
+
+    assert path_change == x.Path
+
+    print("path change passed")
+
+    print("\n")
+
+    print("x.File = \"{}\"\n------------".format(file_change))
+    x.File = file_change
+    show_path_object(print_flag)
+
+    assert file_change == x.File
+
+    print("file change passed")
+
+    print("\npath_container_test.run_main_test() passed")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#

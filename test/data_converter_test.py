@@ -181,6 +181,8 @@ class _Test:
 
             for k in other_path:
 
+                print("\n")
+
                 try:
 
                     dest_path = file(i, k)
@@ -194,6 +196,8 @@ class _Test:
     @classmethod
     def run_all_tests(cls):
 
+        print("\n")
+
         try:
 
             cls._df_test()
@@ -201,6 +205,8 @@ class _Test:
         except:
 
             print("_df_test() failed")
+
+        print("\n")
 
         try:
 
@@ -210,6 +216,8 @@ class _Test:
 
             print("_string_test() failed")
 
+        print("\n")
+
         try:
 
             cls._csv_test()
@@ -217,6 +225,8 @@ class _Test:
         except:
 
             print("_csv_test() failed")
+
+        print("\n")
 
         try:
 
@@ -226,6 +236,8 @@ class _Test:
 
             print("_xlsx_test() failed")
 
+        print("\n")
+
         try:
 
             cls._json_test()
@@ -233,6 +245,8 @@ class _Test:
         except:
 
             print("_json_test() failed")
+
+        print("\n")
 
         try:
 
@@ -242,6 +256,6 @@ class _Test:
 
             print("_html_test() failed")
 
-        cls._files_test()
+        print("\n")
 
-_Test.run_all_tests()
+        cls._files_test()
