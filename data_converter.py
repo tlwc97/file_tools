@@ -1,4 +1,5 @@
 import pandas
+from path_container import Path
 
 __all__ = [
     "df",
@@ -25,7 +26,7 @@ class _Df:
 
         try:
 
-            return pandas.read_excel(path, sheet_name=_File._get_file_name(path))
+            return pandas.read_excel(path, sheet_name=Path(path).name)
 
         except:
 
@@ -41,9 +42,9 @@ class _Df:
     @classmethod
     def df(cls, path, obj=None):
 
-        if obj is None:
+        ext = Path(path).ext
 
-            ext = _File._get_ext(path)
+        if obj is None:
 
             func = getattr(cls, ext)
 
@@ -52,8 +53,6 @@ class _Df:
         else:
 
             if cls._is(obj):
-
-                ext = _File._get_ext(path)
 
                 func = getattr(_File, ext)
 
@@ -105,9 +104,9 @@ class _String:
     @classmethod
     def string(cls, path, str_obj=None):
 
-        if str_obj is None:
+        ext = Path(path).ext
 
-            ext = _File._get_ext(path)
+        if str_obj is None:
 
             import os
 
@@ -135,18 +134,6 @@ class _String:
 class _File:
 
     @classmethod
-    def _get_file_name(cls, path):
-
-        return ".".join(path.split("\\")[-1].split(".")[:-1])
-
-
-    @classmethod
-    def _get_ext(cls, path):
-
-        return path.split(".")[-1]
-
-
-    @classmethod
     def csv(cls, path, df):
 
         df.to_csv(path, na_rep="null", index=False)
@@ -157,9 +144,7 @@ class _File:
     @classmethod
     def xlsx(cls, path, df):
 
-        file_name = _File._get_file_name(path)
-
-        df.to_excel(path, index=False, sheet_name=file_name)
+        df.to_excel(path, index=False, sheet_name=Path(path).name)
 
         return path
 
@@ -197,9 +182,13 @@ class _File:
     @classmethod
     def files(cls, src, dest):
 
-        if (_File._get_ext(src) == "html" and _File._get_ext(dest) == "txt")\
+        src_ext = Path(src).ext
+
+        dest_ext = Path(dest).ext
+
+        if (src_ext == "html" and dest_ext == "txt")\
             \
-            or (_File._get_ext(src) == "txt" and _File._get_ext(dest) == "html"):
+            or (dest_ext == "txt" and dest_ext == "html"):
 
             _String.string(dest, _String.string(src))
 
